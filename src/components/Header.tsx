@@ -7,9 +7,9 @@ const Header: React.FC = () => {
 
   const menuItems = [
     { path: '/', text: 'Dashboard', icon: <LayoutDashboard size={20} /> },
-    { path: '/register', text: 'Register Patient', icon: <UserPlus size={20} /> },
-    { path: '/patients', text: 'Patient List', icon: <List size={20} /> },
-    { path: '/query', text: 'Custom Query', icon: <Search size={20} /> },
+    { path: '/register', text: 'Add Patient', icon: <UserPlus size={20} /> },
+    { path: '/patients', text: 'Patient Records', icon: <List size={20} /> },
+    { path: '/query', text: 'SQL Query', icon: <Search size={20} /> },
   ];
 
   // Common NavLink styles

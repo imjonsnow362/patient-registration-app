@@ -21,11 +21,61 @@ const initSchema = async (database: PGliteWorker) => {
     );
   `);
 
+  // 2. Add columns if they don't exist (migrations)
+  // This is a common pattern for "add column if not exists" in PostgreSQL.
+  // It checks pg_catalog.pg_attribute to see if the column exists.
+  // Each ALTER TABLE should be its own query for better error handling.
+
+  // Add height_cm
+  const heightCmExists = await database.query(`
+    SELECT 1 FROM pg_catalog.pg_attribute
+    WHERE attrelid = 'patients'::regclass
+    AND attname = 'height_cm';
+  `);
+  if (heightCmExists.rows.length === 0) {
+    console.log("Adding column: height_cm");
+    await database.query(`ALTER TABLE patients ADD COLUMN height_cm REAL;`);
+  }
+
+  // Add weight_kg
+  const weightKgExists = await database.query(`
+    SELECT 1 FROM pg_catalog.pg_attribute
+    WHERE attrelid = 'patients'::regclass
+    AND attname = 'weight_kg';
+  `);
+  if (weightKgExists.rows.length === 0) {
+    console.log("Adding column: weight_kg");
+    await database.query(`ALTER TABLE patients ADD COLUMN weight_kg REAL;`);
+  }
+
+  // Add allergies
+  const allergiesExists = await database.query(`
+    SELECT 1 FROM pg_catalog.pg_attribute
+    WHERE attrelid = 'patients'::regclass
+    AND attname = 'allergies';
+  `);
+  if (allergiesExists.rows.length === 0) {
+    console.log("Adding column: allergies");
+    await database.query(`ALTER TABLE patients ADD COLUMN allergies TEXT;`);
+  }
+
+  // Add medical_notes if it was missing (though it seems to be there)
+  const medicalNotesExists = await database.query(`
+    SELECT 1 FROM pg_catalog.pg_attribute
+    WHERE attrelid = 'patients'::regclass
+    AND attname = 'medical_notes';
+  `);
+  if (medicalNotesExists.rows.length === 0) {
+    console.log("Adding column: medical_notes");
+    await database.query(`ALTER TABLE patients ADD COLUMN medical_notes TEXT;`);
+  }
+
+  // Ensure index exists
   await database.query(`
     CREATE INDEX IF NOT EXISTS idx_patient_name ON patients (last_name, first_name);
   `);
 
-  console.log("Database schema initialized");
+  console.log("Database schema initialized and migrated if necessary");
 };
 
 export const initDatabase = async (): Promise<PGliteWorker> => {
