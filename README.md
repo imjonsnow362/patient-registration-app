@@ -97,29 +97,32 @@ To get this system running locally, follow these simple steps:
 
 ---
 
-### Project Layout
+## Project Structure
 
-The project adheres to a clear and organized structure:
-patient-system-pglite/
+The project is organized for clarity and maintainability:
+
+```plaintext
+healthhub-project/
 ├── public/
-│   └── pglite-worker.js     # PGlite worker for multi-tab support
+│   └── pglite-worker.js        # Web Worker for PGlite multi-tab synchronization
 ├── src/
-│   ├── components/          # Reusable UI components
-│   ├── context/             # React context providers
-│   │   └── DatabaseContext.tsx
-│   ├── pages/               # Application pages
-│   │   ├── Dashboard.tsx
-│   │   ├── PatientList.tsx
-│   │   ├── PatientQuery.tsx
-│   │   └── PatientRegistration.tsx
-│   ├── services/            # Core services
-│   │   └── DatabaseService.ts
-│   ├── App.tsx              # Main application component
-│   ├── main.tsx             # Application entry point
-│   └── index.css            # Global styles
-├── package.json
-├── tsconfig.json
-└── vite.config.ts
+│   ├── components/             # Reusable UI components
+│   │   ├── AddPatientForm.tsx  # Patient registration form
+│   │   ├── AppShell.tsx        # Main layout with header and navigation
+│   │   ├── Header.tsx          # Navigation bar
+│   │   ├── NavPanel.tsx        # Sidebar for navigation
+│   │   └── QueryPanel.tsx      # SQL query interface
+│   ├── db/                     # Database services
+│   │   └── DbManager.ts        # PGlite database operations
+│   ├── state/                  # React context
+│   │   └── DbState.tsx         # Database initialization state
+│   ├── App.tsx                 # App entry with routing
+│   ├── main.tsx                # React entry point
+│   └── index.css               # Global CSS styles
+├── package.json                # Dependencies and scripts
+├── tsconfig.json               # TypeScript configuration
+└── vite.config.ts              # Vite configuration
+```
 
 ### Implementation Details
 
@@ -130,7 +133,7 @@ This system leverages **PGlite** to enable a PostgreSQL database to run directly
 #### Database Schema
 
 The patient data is structured within the following database schema:
-
+```plaintext
 CREATE TABLE IF NOT EXISTS patients (
   id SERIAL PRIMARY KEY,
   first_name TEXT NOT NULL,
@@ -148,6 +151,7 @@ CREATE TABLE IF NOT EXISTS patients (
 );
 
 CREATE INDEX IF NOT EXISTS idx_patient_name ON patients (last_name, first_name);
+```
 
 ### How to Use
 #### Adding a New Patient
