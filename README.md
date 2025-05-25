@@ -42,9 +42,3 @@ To get this system running locally, follow these simple steps:
     ```
 4.  **Access Application:**
     Open your web browser and navigate to `http://localhost:5173`.
-
----
-
-### Project Layout
-
-The project adheres to a clear and organized structure:
