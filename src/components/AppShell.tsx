@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from './Header';
-import NavPanel from './NavPanel';
 
 const AppShell: React.FC = () => {
   return (
