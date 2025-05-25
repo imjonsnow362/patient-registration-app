@@ -1,35 +1,26 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Dashboard from './pages/Dashboard';
+import AddPatient from './pages/AddPatient';
+import PatientQuery from './pages/QueryPanel';
+import PatientRecords from './pages/PatientRecords';
+import { DatabaseProvider } from './state/DBState';
+import AppShell from './components/AppShell';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <DatabaseProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<AppShell />}>
+            <Route index element={<Dashboard />} />
+            <Route path="register" element={<AddPatient />} />
+            <Route path="query" element={<PatientQuery />} />
+            <Route path="patients" element={<PatientRecords />} />
+          </Route>
+        </Routes>
+      </Router>
+    </DatabaseProvider>
+  );
 }
 
-export default App
+export default App;
