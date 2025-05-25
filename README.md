@@ -1,54 +1,50 @@
-# React + TypeScript + Vite
+# Modern In-Browser Patient Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This system provides a cutting-edge patient management solution that operates entirely within your web browser, powered by **PGlite (WebAssembly PostgreSQL)**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Core Capabilities
 
-## Expanding the ESLint configuration
+* **Integrated Database:** Features a full PostgreSQL database running directly within your browser, thanks to PGlite.
+* **Offline Functionality:** Works seamlessly without an internet connection, with all data securely stored and persisted in IndexedDB.
+* **Synchronized Tabs:** Ensures consistent database state across multiple browser tabs for a unified experience.
+* **Comprehensive Patient Registration:** Offers a complete form for adding new patients, capturing extensive medical details.
+* **Effortless Patient Lookup:** Provides robust search and filtering capabilities to quickly locate patients by name and other attributes.
+* **Direct SQL Access:** Includes an advanced interface for executing custom SQL queries directly against the database.
+* **Sleek User Interface:** Built with React, offering a clean, responsive, and intuitive user experience.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### Setup Guide
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+To get this system running locally, follow these simple steps:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+#### Prerequisites
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+* **Node.js:** Version 16 or higher
+* **npm:** Version 7 or higher
+
+#### Installation Steps
+
+1.  **Obtain the Repository:**
+    ```bash
+    git clone [(https://github.com/imjonsnow362/patient-registration-app.git)]
+    cd patient-registration-app
+    ```
+2.  **Install Dependencies:**
+    ```bash
+    npm install
+    ```
+3.  **Launch Development Server:**
+    ```bash
+    npm run dev
+    ```
+4.  **Access Application:**
+    Open your web browser and navigate to `http://localhost:5173`.
+
+---
+
+### Project Layout
+
+The project adheres to a clear and organized structure:
