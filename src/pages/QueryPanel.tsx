@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { executeQuery } from '../db/DbManager';
 import { useDatabaseContext } from '../state/DBState';
-import { Database, Clipboard, Copy, Download, CheckCircle, XCircle, Eclipse, Code, Lightbulb, ChevronUp, ChevronDown } from 'lucide-react';
+import { Database, Copy, Download, CheckCircle, XCircle, Code, Lightbulb, ChevronUp, ChevronDown } from 'lucide-react';
 
 interface QueryResult {
   success: boolean;

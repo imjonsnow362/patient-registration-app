@@ -24,7 +24,7 @@ const initialFormData: PatientFormData = {
   medical_notes: '', 
 };
 
-const AddPatient: React.FC<PatientRegistrationFormProps> = ({ onSuccess, onError }) => {
+const AddPatient: React.FC<PatientRegistrationFormProps> = () => {
   const { isLoading, error: dbError } = useDatabaseContext();
   const { formData, errors, handleChange, handleSubmit, isSubmitting, submitSuccess, resetForm } = useForm<PatientFormData>(
     initialFormData,
